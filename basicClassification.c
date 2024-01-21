@@ -6,7 +6,7 @@ int isPrime(int num)
     {
         return 0;
     }
-    for (int i = 2; i*i < num; i++)
+    for (int i = 2; i*i <= num; i++)
     {
         if(num % i == 0)
         {
@@ -14,6 +14,15 @@ int isPrime(int num)
         }
     }
     return 1;
+}
+
+int factorial(int num)
+{
+    if(num == 0)
+    {
+        return 1;
+    }
+    return num * factorial(num -1);
 }
 
 int isStrong(int num)
@@ -30,13 +39,4 @@ int isStrong(int num)
     copyNum /= 10;
    }
    return (sum == num);
-}
-
-int factorial(int num)
-{
-    if(num == 0)
-    {
-        return 1;
-    }
-    return num * factorial(num -1);
 }

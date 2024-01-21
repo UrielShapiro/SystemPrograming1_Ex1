@@ -1,37 +1,25 @@
 #include "NumClass.h"
-int isArmstorng(int num)
-{
-    int numOfDigits = getNumOfDigits(num);
-    int numCopy = num;
-    int sum = 0;
-
-    while(numCopy > 0)
-    {
-        sum += power(numCopy%10, numOfDigits);
-        numCopy/10;
-    }
-    return (num == sum)? 1:0;
-}
 
 int getNumOfDigits(int num)
 {
-    int amount = 0;
+    int amountOfDigits = 0;
     while(num > 0)
     {
-        amount++;
+        amountOfDigits++;
         num/=10;
     }
-    return amount;
+    return amountOfDigits;
 }
 
 int power(int base, int pow)
 {
-    while(pow > 1)
+    int product = 1;
+    while(pow > 0)
     {
-        base *= base;
+        product *= base;
         pow--;
     }
-    return base;
+    return product;
 }
 
 int isPalindrome(int num)
@@ -43,5 +31,19 @@ int isPalindrome(int num)
         reversed = reversed * 10 + numCopy % 10;
         numCopy /= 10;
     }
-    return (reversed == num)? 1:0;
+    return reversed == num;
+}
+
+int isArmstorng(int num)
+{
+    int numOfDigits = getNumOfDigits(num);
+    int numCopy = num;
+    int sum = 0;
+
+    while(numCopy > 0)
+    {
+        sum += power(numCopy%10, numOfDigits);
+        numCopy/=10;
+    }
+    return num == sum;
 }

@@ -1,10 +1,5 @@
 #include "NumClass.h"
 
-int isArmstorng(int num)
-{
-    return num == sumOfDigitsByPower(num, numOfDigits(num))? 1:0;
-}
-
 int numOfDigits(int num)
 {
     if (num == 0)
@@ -32,11 +27,6 @@ int power(int base, int pow)
     return base * power(base,pow - 1);
 }
 
-int isPalindrome(int num)
-{
-    return (num == reversed(num, 0))? 1:0;
-}
-
 int reversed(int num, int reversedNum)
 {
     if(num == 0)
@@ -45,4 +35,14 @@ int reversed(int num, int reversedNum)
     }
     reversedNum = reversedNum * 10 + num % 10;
     return reversed(reversedNum, num / 10);
+}
+
+int isPalindrome(int num)
+{
+    return (num == reversed(num, 0))? 1:0;
+}
+
+int isArmstorng(int num)
+{
+    return num == sumOfDigitsByPower(num, numOfDigits(num))? 1:0;
 }
