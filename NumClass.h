@@ -1,9 +1,6 @@
-#ifdef NumClass.h
-#define NumClass.h
+// #define NumClass.h
 
-int isArmstorng(int)
-int isPalindrome(int)
-int isPrime(int)
-int isStrong(int)
-
-#endif
+int isArmstorng(int);
+int isPalindrome(int);
+int isPrime(int);
+int isStrong(int);

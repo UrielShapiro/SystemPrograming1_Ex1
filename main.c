@@ -13,8 +13,36 @@ int main()
     {
         if(isPrime(i))
         {
-            printf(", ",i);
+            printf("%d", i, ", ");
         }
     }
-    
+
+    printf("/nThe Armstrong numbers are: ");
+    for (int i = num1; i <= num2; i++)
+    {
+        if(isArmstorng(i))
+        {
+            printf("%d", i, ", ");
+        }
+    }
+
+    printf("/nThe strong numbers are: ");
+    for (int i = num1; i <= num2; i++)
+    {
+        if(isStrong(i))
+        {
+            printf("%d", i, ", ");
+        }
+    }
+
+    printf("/nThe Palindrome numbers are: ");
+    for (int i = num1; i <= num2; i++)
+    {
+        if(isPalindrome(i))
+        {
+            printf("%d", i, ", ");
+        }
+    }
+
+    return 0;
 }
