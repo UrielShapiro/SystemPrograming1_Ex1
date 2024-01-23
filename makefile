@@ -16,31 +16,31 @@ libclassrec.a: $(REC_OBJECT_FILES)
 
 recursived: libclassrec.so
 libclassrec.so: $(REC_OBJECT_FILES)
-	$(CC) -shared -o libclassrec.so $(REC_OBJECT_FILES)
+	$(CC) $(FLAGS) -shared -o libclassrec.so $(REC_OBJECT_FILES)
 loopd: libclassloops.so
 libclassloops.so: $(LOOPS_OBJECT_FILES)
-	$(CC) -shared -o libclassloops.so $(LOOPS_OBJECT_FILES)
+	$(CC) $(FLAGS) -shared -o libclassloops.so $(LOOPS_OBJECT_FILES)
 
 mains: main.o libclassrec.a
-	$(CC) -Wall -o mains main.o libclassrec.a
+	$(CC) $(FLAGS) -o mains main.o libclassrec.a
 
 
 maindloop: main.o libclassloops.so
-	$(CC) -o maindloop main.o ./libclassloops.so
+	$(CC) $(FLAGS) -o maindloop main.o ./libclassloops.so
 
 maindrec: main.o libclassrec.so
-	$(CC) -o mainrec main.o ./libclassrec.so
+	$(CC) $(FLAGS) -o mainrec main.o ./libclassrec.so
 
-all: libclassloops.a libclassrec.a libclassrec.so libclassloops.so main.o #loops recursives recursived loopd mains maindloop maindrec
+all: loops recursives recursived loopd mains maindloop maindrec
 
 main.o: NumClass.h main.c
-	$(CC) -c main.c
+	$(CC) $(FLAGS) -c main.c
 basicClassification.o: basicClassification.c NumClass.h
-	$(CC) -c basicClassification.c
+	$(CC) $(FLAGS) -c basicClassification.c
 advancedClassificationLoop.o:advancedClassificationLoop.c NumClass.h
-	$(CC) -c advancedClassificationLoop.c
+	$(CC) $(FLAGS) -c advancedClassificationLoop.c
 advancedClassificationRecursion.o: advancedClassificationRecursion.c NumClass.h
-	$(CC) -c advancedClassificationRecursion.c
+	$(CC) $(FLAGS) -c advancedClassificationRecursion.c
 
 clean:
 	rm -f *.o *.a *.so mains maindloop maindrec mainrec
