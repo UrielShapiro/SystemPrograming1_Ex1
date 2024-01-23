@@ -3,10 +3,9 @@
 
 int main()
 {
-    unsigned int num1;
-    unsigned int num2;
+    int num1,num2;
     //printf("Enter 2 numbers: \n");
-    scanf("%u %u", &num1, &num2);
+    scanf("%d%d", &num1, &num2);
     printf("\nThe Armstrong numbers are:");
     for (int i = num1; i <= num2; i++)
     {
@@ -39,5 +38,6 @@ int main()
             printf(" %d", i);
         }
     }
+    printf("\n");
     return 0;
 }
