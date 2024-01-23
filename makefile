@@ -1,7 +1,10 @@
 CC = gcc
+FLAGS = -Wall
 LOOPS_OBJECT_FILES = basicClassification.o advancedClassificationLoop.o
 REC_OBJECT_FILES =  basicClassification.o advancedClassificationRecursion.o
-
+# STATIC_LIBS = loop recursives
+# DYNAMIC_LIBS = recursived loopd
+# MAINS = mains maindloop maindrec
 
 loops: libclassloops.a
 libclassloops.a: $(LOOPS_OBJECT_FILES)
@@ -23,13 +26,12 @@ mains: main.o libclassrec.a
 
 
 maindloop: main.o libclassloops.so
-	$(CC) -o maindloop main.o libclassloops.so
+	$(CC) -o maindloop main.o ./libclassloops.so
 
 maindrec: main.o libclassrec.so
-	$(CC) -o mainrec main.o libclassrec.so
+	$(CC) -o mainrec main.o ./libclassrec.so
 
-all: main.o $(LOOPS_OBJECT_FILES) $(REC_OBJECT_FILES)
-
+all: loops recursives recursived loopd mains maindloop maindrec
 
 main.o: NumClass.h main.c
 	$(CC) -c main.c
@@ -41,6 +43,6 @@ advancedClassificationRecursion.o: advancedClassificationRecursion.c NumClass.h
 	$(CC) -c advancedClassificationRecursion.c
 
 clean:
-	rm -f *.o *.a *.so
+	rm -f *.o *.a *.so mains maindloop maindrec mainrec
 
 .PHONY: clean all
