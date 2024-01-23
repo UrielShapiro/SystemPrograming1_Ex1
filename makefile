@@ -29,9 +29,9 @@ maindloop: main.o libclassloops.so
 	$(CC) $(FLAGS) -o maindloop main.o ./libclassloops.so
 
 maindrec: main.o libclassrec.so
-	$(CC) $(FLAGS) -o mainrec main.o ./libclassrec.so
+	$(CC) $(FLAGS) -o maindrec main.o ./libclassrec.so
 
-all: loops recursives recursived loopd mains maindloop maindrec
+all: loops maindrec recursives recursived loopd mains maindloop 
 
 main.o: NumClass.h main.c
 	$(CC) $(FLAGS) -c main.c
