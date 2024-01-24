@@ -25,7 +25,7 @@ int power(int base, int pow)
 int isPalindrome(int num)
 {
     int reversed = 0;
-    int numCopy = num;
+    int numCopy = num;      //numCopy is used in cases we don't want to change the original number we received (so we can use it later in the function).
     while(numCopy > 0)
     {
         reversed = reversed * 10 + numCopy % 10;

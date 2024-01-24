@@ -1,13 +1,13 @@
 CC = gcc
 FLAGS = -Wall -g
-# LOOPS_OBJECT_FILES = basicClassification.o advancedClassificationLoop.o
-# REC_OBJECT_FILES =  basicClassification.o advancedClassificationRecursion.o
 LB=basicClassification
 LL=advancedClassificationLoop
 LR= advancedClassificationRecursion
-# STATIC_LIBS = loops recursives
-# DYNAMIC_LIBS = recursived loopd
-# MAINS = mains maindloop maindrec
+MAIN = main
+STATIC_LIBS = loops recursives
+DYNAMIC_LIBS = recursived loopd
+MAINS = mains maindloop maindrec
+EXECUTABLES = mains maindloop maindrec mainrec
 
 .SUFFIXES:
 
@@ -26,20 +26,20 @@ loopd: libclassloops.so
 libclassloops.so: $(LB).o $(LL).o
 	$(CC) $(FLAGS) -shared -o $@ $^
 
-mains: main.o libclassrec.a
+mains: $(MAIN).o libclassrec.a
 	$(CC) $(FLAGS) -o $@ $^
 
 
-maindloop: main.o libclassloops.so
-	$(CC) $(FLAGS) -o maindloop main.o ./libclassloops.so
+maindloop: $(MAIN).o libclassloops.so
+	$(CC) $(FLAGS) -o maindloop $(MAIN).o ./libclassloops.so
 
-maindrec: main.o libclassrec.so
-	$(CC) $(FLAGS) -o maindrec main.o ./libclassrec.so
+maindrec: $(MAIN).o libclassrec.so
+	$(CC) $(FLAGS) -o maindrec $(MAIN).o ./libclassrec.so
 
-all: loops maindrec recursives recursived loopd mains maindloop 
+all: $(MAINS) $(STATIC_LIBS) $(DYNAMIC_LIBS)
 
-main.o: NumClass.h main.c
-	$(CC) $(FLAGS) -c main.c
+main.o: NumClass.h $(MAIN).c
+	$(CC) $(FLAGS) -c $(MAIN).c
 $(LB).o: $(LB).c NumClass.h
 	$(CC) $(FLAGS) -c $< -fPIC
 $(LL).o:$(LL).c NumClass.h
@@ -48,6 +48,6 @@ $(LR).o: $(LR).c NumClass.h
 	$(CC) $(FLAGS) -c $< -fPIC
 
 clean:
-	rm -f *.o *.a *.so mains maindloop maindrec mainrec
+	rm -f *.o *.a *.so $(EXECUTABLES)
 
-.PHONY: clean all loops loopd  recursived recursives
+.PHONY: clean all $(STATIC_LIBS) $(DYNAMIC_LIBS)
